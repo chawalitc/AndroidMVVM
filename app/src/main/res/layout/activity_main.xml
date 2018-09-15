@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
     <data>
+        <import type="chawalit.chonpratatip.androidworkshopmvvm.DecimalUtil"></import>
         <variable name="qty" type="int"/>
         <variable name="user" type ="chawalit.chonpratatip.androidworkshopmvvm.User"/>
+        <variable name="handler" type ="chawalit.chonpratatip.androidworkshopmvvm.ClickHandler"/>
+        <import type="android.view.View"></import>
     </data>
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -18,18 +21,27 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@={user.firstName}"
+            android:text="@{DecimalUtil.getValue(user.age), default = `18`}"
             app:layout_constraintBottom_toTopOf="@+id/tvFirstname" />
 
         <TextView
             android:id="@+id/tvFirstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{user.firstName}"
+            android:text="@={user.firstName}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnDoEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.firstName}"
+            android:onClick="@{() -> handler.onButtonClick(user)}"
+
+            />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
