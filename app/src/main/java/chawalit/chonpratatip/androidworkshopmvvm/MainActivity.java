@@ -24,6 +24,6 @@ public class MainActivity extends AppCompatActivity implements ClickHandler{
     @Override
     public void onButtonClick(User user) {
         Toast.makeText(this, "User"+user.getFirstName()
-                +" age:"+user.getAge()+ " clicked!", Toast.LENGTH_LONG).show();
+                + " clicked!", Toast.LENGTH_LONG).show();
     }
 }
