@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" >
     <data>
+        <import type="java.math.BigDecimal"></import>
         <import type="chawalit.chonpratatip.androidworkshopmvvm.DecimalUtil"></import>
         <variable name="qty" type="int"/>
         <variable name="user" type ="chawalit.chonpratatip.androidworkshopmvvm.User"/>
@@ -15,14 +16,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <!--<EditText-->
-            <!--android:id="@+id/editText"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:ems="10"-->
-            <!--android:inputType="textPersonName"-->
-            <!--android:text="@{DecimalUtil.getValue(user.age), default = `18`}"-->
-            <!--app:layout_constraintBottom_toTopOf="@+id/tvFirstname" />-->
 
         <EditText
             android:id="@+id/editText"
@@ -30,27 +23,37 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@={user.firstName}"
-            app:layout_constraintBottom_toTopOf="@+id/tvFirstname" />
+            android:text="@={DecimalUtil.convertToString(user.age)}"
+            app:layout_constraintBottom_toTopOf="@+id/tvFirstname"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
-            android:id="@+id/tvFirstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@={user.firstName}"
+            android:text="@{DecimalUtil.convertToString(user.age), default = `18`}"
+            android:visibility="@{(user.age.intValue() > 20) ? View.VISIBLE : View.GONE }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="30sp"
+            android:id="@+id/tvFirstname"/>
+
 
         <Button
             android:id="@+id/btnDoEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{user.firstName}"
-            android:onClick="@{() -> handler.onButtonClick(user)}"
+            android:text="Normal Click"
+            android:onClick="@{()-> handler.onButtonClick(user)}"/>
 
-            />
+        <Button
+            android:id="@+id/btnDoEventByLambda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lambda Click" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

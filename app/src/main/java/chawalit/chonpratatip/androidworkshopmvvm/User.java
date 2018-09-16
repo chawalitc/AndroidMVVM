@@ -35,11 +35,13 @@ public class User extends BaseObservable {
         this.lastName = lastName;
     }
 
+    @Bindable
     public BigDecimal getAge() {
         return age;
     }
 
     public void setAge(BigDecimal age) {
         this.age = age;
+        notifyPropertyChanged(BR.age);
     }
 }
